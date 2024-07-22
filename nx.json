@@ -12,5 +12,5 @@
       "{workspaceRoot}/.github/workflows/ci.yml"
     ]
   },
-  "nxCloudAccessToken": "MzNmODZkNTItZTM3Yi00ZmRhLThmYTgtMmIxZTMyOTUzYjI1fHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "${{ NX_CLOUD_ACCESS_TOKEN }}"
 }
