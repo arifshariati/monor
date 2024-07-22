@@ -1,5 +1,5 @@
 import styles from './page.module.css';
-
+import { Button } from '@monor/ui/shadcn';
 export default function Index() {
   /*
    * Replace the elements below with your own.
@@ -15,6 +15,7 @@ export default function Index() {
               <span> Hello there, </span>
               Welcome next-dashboard 👋
             </h1>
+            <Button variant={'outline'}>SHADCN</Button>
           </div>
 
           <div id="hero" className="rounded">
