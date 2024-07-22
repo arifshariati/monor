@@ -18,14 +18,14 @@ jobs:
     name: Run Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the source code 
+      - name: Checkout the source code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Download bun
-        uses: oven-sh/setup-bun@v1
-        with: 
-          bun-version: 0
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: Install dependencies
         run: bun install --no-cache
       - name: 'Derive approperiate SHAs for base and head for `nx affected` commands'
@@ -35,31 +35,31 @@ jobs:
     name: Run Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the source code 
+      - name: Checkout the source code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Download bun
-        uses: oven-sh/setup-bun@v1
-        with: 
-          bun-version: 0
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: Install dependencies
         run: bun install --no-cache
       - name: 'Derive approperiate SHAs for base and head for `nx affected` commands'
         uses: nrwl/nx-set-shas@v4
-      - run: bun nx affected -t test 
+      - run: bun nx affected -t test
   build:
     name: Run Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the source code 
+      - name: Checkout the source code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Download bun
-        uses: oven-sh/setup-bun@v1
-        with: 
-          bun-version: 0
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: Install dependencies
         run: bun install --no-cache
       - name: 'Derive approperiate SHAs for base and head for `nx affected` commands'
