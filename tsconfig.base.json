@@ -16,8 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@monor/ui": ["libs/ui/src/index.ts"],
-      "@monor/ui/server": ["libs/ui/src/server.ts"],
-      "@monor/utils": ["libs/utils/src/index.ts"]
+      "@monor/ui/*": ["libs/ui/src/*"],
+      "@monor/utils": ["libs/utils/src/index.ts"],
+      "@monor/utils/*": ["libs/utils/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
