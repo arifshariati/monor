@@ -17,7 +17,6 @@
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
-  "nxCloudAccessToken": "${NX_CLOUD_ACCESS_TOKEN}",
   "plugins": [
     {
       "plugin": "@nx/next/plugin",
@@ -70,8 +69,6 @@
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     }
-  }
-
+  },
   "nxCloudAccessToken": "${{ NX_CLOUD_ACCESS_TOKEN }}"
-
 }
