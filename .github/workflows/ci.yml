@@ -7,36 +7,76 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   actions: read
   contents: read
 
 jobs:
-  main:
+  lint:
+    name: Run Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout the source code 
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
-
-      # This enables task distribution via Nx Cloud
-      # Run this command as early as possible, before dependencies are installed
-      # Learn more at https://nx.dev/ci/reference/nx-cloud-cli#npx-nxcloud-startcirun
+      - name: Download bun
+        uses: oven-sh/setup-bun@v1
+        with: 
+          bun-version: 0
       - run: bunx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build"
         env:
           NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
-      
-      - run: bun install --no-cache
-      - uses: nrwl/nx-set-shas@v4
-
-      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
-      # - run: bun nx-cloud record -- echo Hello World
-      # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
-      - run: bun nx affected -t lint test build
+      - name: Install dependencies
+        run: bun install --no-cache
+      - name: 'Derive approperiate SHAs for base and head for `nx affected` commands'
+        uses: nrwl/nx-set-shas@v4
+      - run: bun nx affected -t lint
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  test:
+    name: Run Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the source code 
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Download bun
+        uses: oven-sh/setup-bun@v1
+        with: 
+          bun-version: 0
+      - run: bunx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build"
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+      - name: Install dependencies
+        run: bun install --no-cache
+      - name: 'Derive approperiate SHAs for base and head for `nx affected` commands'
+        uses: nrwl/nx-set-shas@v4
+      - run: bun nx affected -t test 
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  build:
+    name: Run Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the source code 
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Download bun
+        uses: oven-sh/setup-bun@v1
+        with: 
+          bun-version: 0
+      - run: bunx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build"
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+      - name: Install dependencies
+        run: bun install --no-cache
+      - name: 'Derive approperiate SHAs for base and head for `nx affected` commands'
+        uses: nrwl/nx-set-shas@v4
+      - run: bun nx affected -t build
         env:
           NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
