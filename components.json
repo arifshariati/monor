@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tailwind": {
+    "config": "libs/utils/src/tailwind/tailwind.config.js",
+    "css": "libs/utils/src/tailwind/global.css",
+    "baseColor": "stone",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "@monor/ui/shadcn",
+    "ui": "@monor/ui/shadcn",
+    "utils": "@monor/utils/tailwind"
+  }
+}
