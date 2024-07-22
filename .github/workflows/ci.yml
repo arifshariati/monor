@@ -28,7 +28,9 @@ jobs:
       # Run this command as early as possible, before dependencies are installed
       # Learn more at https://nx.dev/ci/reference/nx-cloud-cli#npx-nxcloud-startcirun
       - run: bunx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build"
-
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+      
       - run: bun install --no-cache
       - uses: nrwl/nx-set-shas@v4
 
