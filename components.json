@@ -3,7 +3,7 @@
   "style": "new-york",
   "rsc": false,
   "tailwind": {
-    "config": "libs/utils/src/tailwind/tailwind.config.js",
+    "config": "libs/utils/src/tailwind/tailwind.config.ts",
     "css": "libs/utils/src/tailwind/global.css",
     "baseColor": "stone",
     "cssVariables": true
