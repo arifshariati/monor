@@ -2,6 +2,7 @@ import './global.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@monor/contexts';
+import { TooltipProvider } from '@monor/ui/shadcn';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,7 +17,7 @@ type RootLayoutProps = {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning={true} lang="en">
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
@@ -24,7 +25,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <TooltipProvider>{children}</TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
