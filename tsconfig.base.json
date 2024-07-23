@@ -15,6 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@monor/contexts": ["libs/contexts/src/index.tsx"],
+      "@monor/contexts/*": ["libs/contexts/src/*"],
       "@monor/ui": ["libs/ui/src/index.ts"],
       "@monor/ui/*": ["libs/ui/src/*"],
       "@monor/utils": ["libs/utils/src/index.ts"],
