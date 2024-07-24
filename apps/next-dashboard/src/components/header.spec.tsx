@@ -3,7 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import Header from './header';
 
 // mock the image component from NextJS
-jest.mock('next/Image', () => ({
+jest.mock('next/image', () => ({
   __esModule: true,
   default: ({
     src,
