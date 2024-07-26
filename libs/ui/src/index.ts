@@ -1,1 +1,3 @@
-export * from './sample-component';
+export * from './box-page-center';
+export * from './side-bar-with-icons-only';
+// export * from './side-bar-with-icons-texts';
