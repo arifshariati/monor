@@ -1,0 +1,9 @@
+{
+  "name": "ai-content-generator",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ai-content-generator",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project ai-content-generator --web",
+  "targets": {}
+}

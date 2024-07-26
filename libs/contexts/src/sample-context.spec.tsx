@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
 import SampleContext from './sample-context';
 
 describe('sample-context', () => {

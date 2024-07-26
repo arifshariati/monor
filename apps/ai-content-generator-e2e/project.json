@@ -1,0 +1,9 @@
+{
+  "name": "ai-content-generator-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ai-content-generator-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["ai-content-generator"],
+  "// targets": "to see all targets run: nx show project ai-content-generator-e2e --web",
+  "targets": {}
+}
