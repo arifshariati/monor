@@ -2,7 +2,21 @@
   "name": "@monor/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "next-dashboard:dev": "bun nx run next-dashboard:dev -p 3000",
+    "next-dashboard:e2e": "bun nx run next-dashboard-e2e:e2e",
+    "ai-content-generator:dev": "bun nx run ai-content-generator:dev -p 3001",
+    "ai-content-generator:e2e": "bun nx run ai-content-generator-e2e:e2e",
+    "affected:test": "bun nx affected -t test",
+    "affected:lint": "bun nx affected -t lint",
+    "affected:lint:fix": "bun nx affected -t link --fix",
+    "affected:build": "bun nx affected -t build",
+    "test": "bun nx run-many -t test",
+    "e2e": "bun nx run-many -t e2e",
+    "lint": "bun nx run-many -t lint",
+    "lint:fix": "bun nx run-many -t lint --fix",
+    "build": "bun nx run-many -t build"
+  },
   "private": true,
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.1",
