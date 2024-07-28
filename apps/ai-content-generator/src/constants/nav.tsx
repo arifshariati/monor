@@ -4,8 +4,8 @@ import {
   LineChart,
   Package,
   Settings,
-  ShoppingCart,
   Users2,
+  NotepadTextDashed,
 } from 'lucide-react';
 import { ILogo, INavLink } from '@monor/interfaces';
 export const logoData: ILogo = {
@@ -22,10 +22,10 @@ export const navLinksData: INavLink[] = [
     icon: <Home className="h-5 w-5" />,
   },
   {
-    text: 'Shopping Cart',
-    slug: 'SC',
-    url: '/shopping-cart',
-    icon: <ShoppingCart className="h-5 w-5" />,
+    text: 'Template',
+    slug: 'template',
+    url: '/template',
+    icon: <NotepadTextDashed className="h-5 w-5" />,
   },
   {
     text: 'Products',
