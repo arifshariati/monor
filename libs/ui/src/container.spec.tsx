@@ -1,6 +1,11 @@
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Container } from './container';
+import { cn } from '@monor/utils/tailwind';
+
+jest.mock('@monor/utils/tailwind', () => ({
+  cn: jest.fn((...classes) => classes.filter(Boolean).join(' ')),
+}));
 
 describe('container', () => {
   describe('flex - container', () => {
@@ -13,6 +18,7 @@ describe('container', () => {
     });
     afterEach(() => {
       cleanup();
+      jest.clearAllMocks();
     });
 
     it('applies correct classes', () => {
@@ -36,6 +42,7 @@ describe('container', () => {
     });
     afterEach(() => {
       cleanup();
+      jest.clearAllMocks();
     });
 
     it('applies correct classes', () => {
@@ -45,6 +52,45 @@ describe('container', () => {
     it('renders multiple children correctly', () => {
       expect(screen.getByText('Child 1')).toBeInTheDocument();
       expect(screen.getByText('Child 2')).toBeInTheDocument();
+    });
+  });
+
+  describe('with additional className', () => {
+    beforeEach(() => {
+      render(
+        <Container className="additional-class">
+          <div>Child 1</div>
+          <div>Child 2</div>
+        </Container>
+      );
+    });
+    afterEach(() => {
+      cleanup();
+      jest.clearAllMocks();
+    });
+
+    it('applies correct classes', () => {
+      const container = screen.getByTestId('container');
+      expect(container).toHaveClass('flex flex-wrap gap-4 p-2');
+    });
+
+    it('applies additional class along with base class', () => {
+      const container = screen.getByTestId('container');
+      expect(container).toHaveClass(
+        'flex flex-wrap gap-4 p-2 additional-class'
+      );
+    });
+    it('renders multiple children correctly', () => {
+      expect(screen.getByText('Child 1')).toBeInTheDocument();
+      expect(screen.getByText('Child 2')).toBeInTheDocument();
+    });
+
+    it('class cn with correct arguments', () => {
+      expect(cn).toHaveBeenCalledWith(
+        'flex flex-wrap gap-4 p-2',
+        undefined,
+        'additional-class'
+      );
     });
   });
 });
