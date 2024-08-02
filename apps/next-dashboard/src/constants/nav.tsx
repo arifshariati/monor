@@ -1,4 +1,5 @@
 import {
+  BookType,
   Flower,
   Home,
   LineChart,
@@ -44,6 +45,12 @@ export const navLinksData: INavLink[] = [
     slug: 'A',
     url: '/analytics',
     icon: <LineChart className="h-5 w-5" />,
+  },
+  {
+    text: 'Forms',
+    slug: 'F',
+    url: '/forms',
+    icon: <BookType className="h-5 w-5" />,
   },
 ];
 export const bottomNavLinksData: INavLink[] = [
