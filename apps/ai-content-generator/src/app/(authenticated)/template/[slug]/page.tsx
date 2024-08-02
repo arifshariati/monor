@@ -1,15 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { useRouter } from 'next/navigation';
-import { ChevronLeft, Mail } from 'lucide-react';
-import {
-  Button,
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@monor/ui/shadcn';
+import { useState } from 'react';
+import { ChevronLeft } from 'lucide-react';
+import { Button } from '@monor/ui/shadcn';
 import { templateList } from '../../../../constants/templates';
+import TemplateCard from './(components)/template-card';
+import { chatSession } from '../../../../utils/gemini-modal';
+import PromoptResult from './(components)/prompt-result';
 
 type TemplateDynamicPageProps = {
   params: {
@@ -20,8 +18,28 @@ type TemplateDynamicPageProps = {
 const TemplateDynamicPage = ({
   params: { slug },
 }: TemplateDynamicPageProps) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [editorData, setEditorData] = useState<string>('');
   const router = useRouter();
-  const formDetails = templateList.find((template) => template.slug === slug);
+
+  const templateDetails = templateList.find(
+    (template) => template.slug === slug
+  );
+  if (!templateDetails) return null;
+
+  const onSubmit = async (values: any) => {
+    try {
+      setIsLoading(true);
+      const aiPrompt = `${JSON.stringify(values)} ${templateDetails.aiPrompt}`;
+      const result = await chatSession.sendMessage(aiPrompt);
+      setEditorData(result.response.text());
+    } catch (e) {
+      // do nothing
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4 w-full">
       <div className="flex w-full">
@@ -30,33 +48,15 @@ const TemplateDynamicPage = ({
           Back
         </Button>
       </div>
-      {/* forms section */}
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4 max-h-[400px] ">
-        {/* form section */}
-        <div className="flex flex-col p-4">
-          <Card data-testid="card1-card" className="rounded-md shadow-sm">
-            <CardHeader>
-              <CardTitle className="flex gap-2 items-center text-xl">
-                {formDetails?.titleLogo}
-                {formDetails?.title}
-              </CardTitle>
-              <CardDescription className="min-h-10 max-h-10">
-                {formDetails?.description}
-              </CardDescription>
-            </CardHeader>
 
-            {formDetails?.button && (
-              <CardFooter>
-                <Button data-testid="card1-button" className="w-full">
-                  {formDetails.button.text}
-                </Button>
-              </CardFooter>
-            )}
-          </Card>
-        </div>
-        {/* WYSWYG section */}
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4 max-h-[400px] ">
+        <TemplateCard
+          templateData={templateDetails}
+          onSubmit={onSubmit}
+          isLoading={isLoading}
+        />
         <div className="flex flex-col p-4 col-span-2">
-          <h1>Hellow</h1>
+          <PromoptResult data={editorData} />
         </div>
       </div>
     </div>

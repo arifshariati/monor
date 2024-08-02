@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ZodMethodType } from './zod-mappings';
 
 export type ValidationRule = {
