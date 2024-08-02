@@ -1,4 +1,4 @@
-import { z, ZodSchema } from 'zod';
+import { z, ZodSchema, ZodTypeAny } from 'zod';
 import { zodMappings, ZodMethodType, ValidationRule } from '@monor/types';
 
 type FormFieldConfig = {
@@ -9,21 +9,25 @@ type FormFieldConfig = {
   };
 };
 
+type Shape = {
+  [key: string]: ZodTypeAny;
+};
+
 export const generateZodSchema = (
   fields: FormFieldConfig[]
-): ZodSchema<any> => {
-  const shape: any = {};
+): ZodSchema<Shape> => {
+  const shape: Shape = {};
   fields.forEach((field) => {
     const zodMethod = zodMappings[field.validation.type];
     if (!zodMethod) {
       throw new Error(`Unsupported validation type: ${field.validation.type}`);
     }
 
-    let schema = zodMethod();
+    let schema: ZodTypeAny = zodMethod();
     field.validation.rules.forEach((rule) => {
       const method = rule.method as keyof typeof schema;
       if (typeof schema[method] === 'function') {
-        schema = (schema[method] as any)(...rule.params);
+        schema = schema[method](...rule.params);
       } else {
         throw new Error(`Invalid method: ${rule.method}`);
       }

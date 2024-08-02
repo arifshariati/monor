@@ -23,9 +23,20 @@ export const templateList: ITemplateList[] = [
           rules: [{ method: 'min', params: [1] }],
         },
       },
+      {
+        name: 'outline',
+        label: 'Outline',
+        placeholder: 'Enter blog outline',
+        type: FormFieldType.TextArea,
+        validation: {
+          type: 'string',
+          rules: [{ method: 'min', params: [1] }],
+        },
+      },
     ],
     defaultValues: {
       title: '',
+      outline: '',
     },
     button: {
       url: '/template/blog-title',
@@ -43,10 +54,20 @@ export const templateList: ITemplateList[] = [
       'Generate Blog Content based on topic and outline in rich text editor format',
     formFields: [
       {
-        name: 'title',
-        label: 'Title',
-        placeholder: 'Enter blog title',
+        name: 'topic',
+        label: 'Topic',
+        placeholder: 'Enter your blog topic',
         type: FormFieldType.Text,
+        validation: {
+          type: 'string',
+          rules: [{ method: 'min', params: [1] }],
+        },
+      },
+      {
+        name: 'outline',
+        label: 'Outline',
+        placeholder: 'Enter blog outline here',
+        type: FormFieldType.TextArea,
         validation: {
           type: 'string',
           rules: [{ method: 'min', params: [1] }],
@@ -54,7 +75,8 @@ export const templateList: ITemplateList[] = [
       },
     ],
     defaultValues: {
-      title: '',
+      topic: '',
+      outline: '',
     },
     button: {
       url: '/template/blog-content',
@@ -72,9 +94,9 @@ export const templateList: ITemplateList[] = [
       'Generate top 5 Blog Topic Ideas in bullet point only, (no Description) based on niche in rich text editor format',
     formFields: [
       {
-        name: 'title',
-        label: 'Title',
-        placeholder: 'Enter blog title',
+        name: 'niche',
+        label: 'Niche',
+        placeholder: 'Enter niche here',
         type: FormFieldType.Text,
         validation: {
           type: 'string',
@@ -83,7 +105,7 @@ export const templateList: ITemplateList[] = [
       },
     ],
     defaultValues: {
-      title: '',
+      niche: '',
     },
     button: {
       url: '/template/blog-topic-ideas',
@@ -101,10 +123,20 @@ export const templateList: ITemplateList[] = [
       'Give me Best SEO optimized high ranked 5 title ideas bullet wise only bases on keywords and outline and give me result in HTML tags format',
     formFields: [
       {
-        name: 'title',
-        label: 'Title',
-        placeholder: 'Enter blog title',
+        name: 'keywords',
+        label: 'Keywords',
+        placeholder: 'Enter your youtube video topic keyowords',
         type: FormFieldType.Text,
+        validation: {
+          type: 'string',
+          rules: [{ method: 'min', params: [1] }],
+        },
+      },
+      {
+        name: 'outline',
+        label: 'Outline',
+        placeholder: 'Enter youtube description Outline here',
+        type: FormFieldType.TextArea,
         validation: {
           type: 'string',
           rules: [{ method: 'min', params: [1] }],
@@ -112,7 +144,8 @@ export const templateList: ITemplateList[] = [
       },
     ],
     defaultValues: {
-      title: '',
+      keywords: '',
+      outline: '',
     },
     button: {
       url: '/template/youtube-seo-title',
@@ -134,10 +167,20 @@ export const templateList: ITemplateList[] = [
     },
     formFields: [
       {
-        name: 'title',
-        label: 'Title',
-        placeholder: 'Enter blog title',
+        name: 'topic',
+        label: 'Topic',
+        placeholder: 'Enter your blog topic/title',
         type: FormFieldType.Text,
+        validation: {
+          type: 'string',
+          rules: [{ method: 'min', params: [1] }],
+        },
+      },
+      {
+        name: 'outline',
+        label: 'Outline',
+        placeholder: 'Enter youtube Outline here',
+        type: FormFieldType.TextArea,
         validation: {
           type: 'string',
           rules: [{ method: 'min', params: [1] }],
@@ -145,7 +188,8 @@ export const templateList: ITemplateList[] = [
       },
     ],
     defaultValues: {
-      title: '',
+      topic: '',
+      outline: '',
     },
   },
   {
@@ -165,16 +209,27 @@ export const templateList: ITemplateList[] = [
       {
         name: 'title',
         label: 'Title',
-        placeholder: 'Enter blog title',
+        placeholder: 'Enter your youtube title',
         type: FormFieldType.Text,
         validation: {
           type: 'string',
           rules: [{ method: 'min', params: [1] }],
         },
       },
+      {
+        name: 'outline',
+        label: 'Outline',
+        placeholder: 'Enter youtube video Outline here (Optional)',
+        type: FormFieldType.TextArea,
+        validation: {
+          type: 'string',
+          rules: [],
+        },
+      },
     ],
     defaultValues: {
       title: '',
+      outline: '',
     },
   },
 ];

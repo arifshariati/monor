@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ICard1 } from '@monor/interfaces';
 import { FormFieldConfig } from '@monor/types';
 
