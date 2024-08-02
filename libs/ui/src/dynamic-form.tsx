@@ -20,6 +20,52 @@ type DynamicFormProps = {
   onSubmit: SubmitHandler<any>;
 };
 
+export const renderField = (field: FormFieldConfig, controllerField: any) => {
+  switch (field.type) {
+    case FormFieldType.Text:
+    case FormFieldType.Email:
+    case FormFieldType.Password:
+      return (
+        <TextField
+          field={controllerField}
+          type={field.type}
+          label={field.label}
+          placeholder={field.placeholder}
+          description={field.description}
+        />
+      );
+    case FormFieldType.Select:
+      return (
+        <SelectField
+          field={controllerField}
+          label={field.label}
+          placeholder={field.placeholder}
+          description={field.description}
+          options={field.options!}
+        />
+      );
+    case FormFieldType.Date:
+      return (
+        <DateFieled
+          field={controllerField}
+          label={field.label}
+          description={field.description}
+        />
+      );
+    case FormFieldType.TextArea:
+      return (
+        <TextareaField
+          field={controllerField}
+          label={field.label}
+          placeholder={field.placeholder}
+          description={field.description}
+        />
+      );
+    default:
+      return <></>;
+  }
+};
+
 export const DynamicForm = ({ config, onSubmit }: DynamicFormProps) => {
   const schema = generateZodSchema(config.fields);
   const form = useForm({
@@ -27,52 +73,6 @@ export const DynamicForm = ({ config, onSubmit }: DynamicFormProps) => {
     defaultValues: config.defaultValues,
   });
 
-  const { Text, Email, Password, Select, Date, TextArea } = FormFieldType;
-  const renderField = (field: FormFieldConfig, controllerField: any) => {
-    switch (field.type) {
-      case Text:
-      case Email:
-      case Password:
-        return (
-          <TextField
-            field={controllerField}
-            type={field.type}
-            label={field.label}
-            placeholder={field.placeholder}
-            description={field.description}
-          />
-        );
-      case Select:
-        return (
-          <SelectField
-            field={controllerField}
-            label={field.label}
-            placeholder={field.placeholder}
-            description={field.description}
-            options={field.options!}
-          />
-        );
-      case Date:
-        return (
-          <DateFieled
-            field={controllerField}
-            label={field.label}
-            description={field.description}
-          />
-        );
-      case TextArea:
-        return (
-          <TextareaField
-            field={controllerField}
-            label={field.label}
-            placeholder={field.placeholder}
-            description={field.description}
-          />
-        );
-      default:
-        return <></>;
-    }
-  };
   return (
     <Card>
       <CardHeader>
