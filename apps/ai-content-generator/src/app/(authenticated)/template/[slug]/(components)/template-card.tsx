@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,13 +16,16 @@ import {
   FormField,
 } from '@monor/ui/shadcn';
 import { ITemplateList } from '../../../../../types/template';
+import { RefreshCcw } from 'lucide-react';
 
 type TemplateCardProps = {
   templateData: ITemplateList;
   onSubmit: SubmitHandler<any>;
+  isLoading?: boolean;
 };
 
 const TemplateCard = ({
+  isLoading = false,
   onSubmit,
   templateData: {
     title,
@@ -57,6 +61,7 @@ const TemplateCard = ({
                   key={field.name}
                   control={form.control}
                   name={field.name}
+                  disabled={isLoading}
                   render={({ field: controllerField }) =>
                     renderField(field, controllerField)
                   }
@@ -66,7 +71,12 @@ const TemplateCard = ({
 
             {button && (
               <CardFooter>
-                <Button data-testid="card1-button" className="w-full">
+                <Button
+                  disabled={isLoading}
+                  data-testid="card1-button"
+                  className="w-full flex gap-4"
+                >
+                  {isLoading && <RefreshCcw className="animate-spin" />}
                   {button.text}
                 </Button>
               </CardFooter>

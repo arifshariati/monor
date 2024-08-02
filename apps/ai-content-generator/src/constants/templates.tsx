@@ -160,7 +160,7 @@ export const templateList: ITemplateList[] = [
       'An AI tool that serves as your personal blog content with viral-worthy slugs provided',
     category: 'Youtube Tools',
     aiPrompt:
-      'Generate Youtube description with emoji under 4-5 lines based on topic and outline in rich text editor format',
+      'Generate Youtube description with emoji under 50 lines based on topic and outline in rich text editor format',
     button: {
       url: '/template/youtube-description',
       text: 'Lets go',
