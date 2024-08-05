@@ -18,3 +18,13 @@ export const userAiContents = userAiContentsSchema.table('user-ai-contents', {
   userEmail: varchar('user-email'),
   createdAt: timestamp('created-at').defaultNow(),
 });
+
+export type UserAiContentType = {
+  id: number;
+  input: string | null;
+  slug: string | null;
+  content: string | null;
+  wordCount: number | null;
+  userEmail: string | null;
+  createdAt: Date | null;
+};
