@@ -2,7 +2,7 @@ import {
   Flower,
   Home,
   LineChart,
-  Package,
+  History,
   Settings,
   Users2,
   NotepadTextDashed,
@@ -28,10 +28,10 @@ export const navLinksData: INavLink[] = [
     icon: <NotepadTextDashed className="h-5 w-5" />,
   },
   {
-    text: 'Products',
-    slug: 'P',
-    url: '/products',
-    icon: <Package className="h-5 w-5" />,
+    text: 'History',
+    slug: 'H',
+    url: '/history',
+    icon: <History className="h-5 w-5" />,
   },
   {
     text: 'Customers',
