@@ -9,6 +9,9 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  NEXT_PUBLIC_DATABASE_URL: ${{ secrets.NEXT_PUBLIC_DATABASE_URL }}
+
 permissions:
   actions: read
   contents: read
@@ -51,6 +54,7 @@ jobs:
   build:
     name: Run Build
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout the source code
         uses: actions/checkout@v4
