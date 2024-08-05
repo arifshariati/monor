@@ -1,0 +1,71 @@
+{
+  "id": "62b93321-a457-413a-a817-cb70d7354f24",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "user-ai-contents-schema.user-ai-contents": {
+      "name": "user-ai-contents",
+      "schema": "user-ai-contents-schema",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "input": {
+          "name": "input",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content": {
+          "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "word-count": {
+          "name": "word-count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user-email": {
+          "name": "user-email",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created-at": {
+          "name": "created-at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {
+    "user-ai-contents-schema": "user-ai-contents-schema"
+  },
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
