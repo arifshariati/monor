@@ -8,6 +8,8 @@ import { templateList } from '../../../../constants/templates';
 import TemplateCard from './(components)/template-card';
 import { chatSession } from '../../../../utils/gemini-modal';
 import PromoptResult from './(components)/prompt-result';
+import { insertRecord } from '../../../../actions/neon-drizzle';
+import { useUser } from '@clerk/nextjs';
 
 type TemplateDynamicPageProps = {
   params: {
@@ -21,6 +23,7 @@ const TemplateDynamicPage = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [editorData, setEditorData] = useState<string>('');
   const router = useRouter();
+  const { user } = useUser();
 
   const templateDetails = templateList.find(
     (template) => template.slug === slug
@@ -32,7 +35,19 @@ const TemplateDynamicPage = ({
       setIsLoading(true);
       const aiPrompt = `${JSON.stringify(values)} ${templateDetails.aiPrompt}`;
       const result = await chatSession.sendMessage(aiPrompt);
-      setEditorData(result.response.text());
+      if (!result) return;
+
+      const content = result.response.text();
+      const payload = {
+        input: aiPrompt,
+        slug: templateDetails.slug,
+        content,
+        wordCount: content.length,
+        userEmail: user?.primaryEmailAddress?.emailAddress,
+      };
+      await insertRecord(payload);
+
+      setEditorData(content);
     } catch (e) {
       // do nothing
     } finally {
