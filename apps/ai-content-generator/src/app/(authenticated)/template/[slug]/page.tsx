@@ -2,6 +2,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useUser } from '@clerk/nextjs';
 import { ChevronLeft } from 'lucide-react';
 import { Button } from '@monor/ui/shadcn';
 import { templateList } from '../../../../constants/templates';
@@ -9,7 +10,7 @@ import TemplateCard from './(components)/template-card';
 import { chatSession } from '../../../../utils/gemini-modal';
 import PromoptResult from './(components)/prompt-result';
 import { insertRecord } from '../../../../actions/neon-drizzle';
-import { useUser } from '@clerk/nextjs';
+import { useUserAiContent } from '../../../../store/user-ai-content';
 
 type TemplateDynamicPageProps = {
   params: {
@@ -24,6 +25,7 @@ const TemplateDynamicPage = ({
   const [editorData, setEditorData] = useState<string>('');
   const router = useRouter();
   const { user } = useUser();
+  const { addUserAiContents } = useUserAiContent();
 
   const templateDetails = templateList.find(
     (template) => template.slug === slug
@@ -45,7 +47,8 @@ const TemplateDynamicPage = ({
         wordCount: content.length,
         userEmail: user?.primaryEmailAddress?.emailAddress,
       };
-      await insertRecord(payload);
+      const inserted = await insertRecord(payload);
+      inserted?.length && addUserAiContents(inserted[0]);
 
       setEditorData(content);
     } catch (e) {

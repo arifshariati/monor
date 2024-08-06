@@ -1,24 +1,27 @@
 'use client';
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { columns } from './columns';
 import { DataTable } from './data-table';
 import { getUserRecords } from '../../../actions/neon-drizzle';
-import { UserAiContentType } from '../../../db/schema';
 import { toast } from '@monor/ui/shadcn';
+import { useUserAiContent } from '../../../store/user-ai-content';
 
 const HistoryPage = () => {
-  const [data, setData] = useState<UserAiContentType[] | []>([]);
+  const { userAiContent, setUserAiContents, hasLoaded } = useUserAiContent();
+
   const { user } = useUser();
 
   const fetchRecords = useCallback(async () => {
+    if (!user?.primaryEmailAddress?.emailAddress || hasLoaded) return;
+
     try {
       const result = await getUserRecords({
         email: user?.primaryEmailAddress?.emailAddress,
       });
 
       if (result) {
-        setData(result);
+        setUserAiContents(result);
       }
     } catch (e: unknown) {
       if (e instanceof Error) {
@@ -30,7 +33,7 @@ const HistoryPage = () => {
         console.log(e);
       }
     }
-  }, [user?.primaryEmailAddress?.emailAddress]);
+  }, [user?.primaryEmailAddress?.emailAddress, setUserAiContents, hasLoaded]);
 
   useEffect(() => {
     fetchRecords();
@@ -38,7 +41,7 @@ const HistoryPage = () => {
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={userAiContent} />
     </div>
   );
 };
