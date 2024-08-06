@@ -1,22 +1,40 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useUser } from '@clerk/nextjs';
 import { columns } from './columns';
 import { DataTable } from './data-table';
-import { getRecords } from '../../../actions/neon-drizzle';
+import { getUserRecords } from '../../../actions/neon-drizzle';
 import { UserAiContentType } from '../../../db/schema';
+import { toast } from '@monor/ui/shadcn';
 
 const HistoryPage = () => {
   const [data, setData] = useState<UserAiContentType[] | []>([]);
-  useEffect(() => {
-    const records = async () => {
-      const result = await getRecords();
+  const { user } = useUser();
+
+  const fetchRecords = useCallback(async () => {
+    try {
+      const result = await getUserRecords({
+        email: user?.primaryEmailAddress?.emailAddress,
+      });
+
       if (result) {
         setData(result);
       }
-    };
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        toast({
+          title: '🔴 Error',
+          description: e.message,
+        });
+      } else {
+        console.log(e);
+      }
+    }
+  }, [user?.primaryEmailAddress?.emailAddress]);
 
-    records();
-  }, []);
+  useEffect(() => {
+    fetchRecords();
+  }, [fetchRecords]);
 
   return (
     <div className="container mx-auto py-10">
