@@ -1,6 +1,6 @@
 import { desc, eq } from 'drizzle-orm';
 import { getNeonDrizzleDBInstance } from '../db/neonDrizzle';
-import { userAiContents } from '../db/schema';
+import { userAiContents, UserAiContentType } from '../db/schema';
 
 const db = getNeonDrizzleDBInstance();
 
@@ -32,9 +32,11 @@ export const getUserRecords = async ({
   }
 };
 
-export const insertRecord = async (payload: Record<string, unknown>) => {
+export const insertRecord = async (
+  payload: Record<string, any>
+): Promise<UserAiContentType[] | undefined> => {
   try {
-    await db.insert(userAiContents).values(payload);
+    return await db.insert(userAiContents).values(payload).returning();
   } catch (e) {
     console.log(e);
   }
