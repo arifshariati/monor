@@ -1,7 +1,10 @@
+'use client';
 import moment from 'moment';
 import { ColumnDef } from '@tanstack/react-table';
 import { truncateString } from '@monor/utils/strings';
 import { UserAiContentType } from '../../../db/schema';
+import { Button } from '@monor/ui/shadcn';
+import { CaretSortIcon } from '@radix-ui/react-icons';
 
 export const columns: ColumnDef<UserAiContentType>[] = [
   {
@@ -21,7 +24,17 @@ export const columns: ColumnDef<UserAiContentType>[] = [
   },
   {
     accessorKey: 'createdAt',
-    header: 'CreatedAt',
-    cell: ({ row }) => moment(row.getValue('createdAt')).fromNow(),
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Created
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => <div>{moment(row.getValue('createdAt')).fromNow()}</div>,
   },
 ];

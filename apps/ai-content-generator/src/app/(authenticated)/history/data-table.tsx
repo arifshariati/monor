@@ -8,7 +8,6 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import {
-  Button,
   Table,
   TableBody,
   TableCell,
@@ -16,15 +15,15 @@ import {
   TableHeader,
   TableRow,
 } from '@monor/ui/shadcn';
+import DataTableHeader from './data-table-header';
+import { UserAiContentType } from '../../../db/schema';
+import DataTableFooter from './data-table-footer';
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-}
-export function DataTable<TData, TValue>({
-  columns,
-  data,
-}: DataTableProps<TData, TValue>) {
+type DataTableProps = {
+  columns: ColumnDef<UserAiContentType>[];
+  data: UserAiContentType[] | [];
+};
+export const DataTable = ({ columns, data }: DataTableProps) => {
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const table = useReactTable({
     data,
@@ -38,7 +37,8 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
+      <DataTableHeader table={table} />
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -89,32 +89,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-
-      <div className="flex items-center justify-between space-x-2 py-4">
-        <div className="flex items-center space-x-2">
-          <p className="flex-1 text-sm text-muted-foreground">
-            {table.getFilteredRowModel().rows.length} total records.
-          </p>
-        </div>
-        <div className="flex items-center justify-end space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
-        </div>
-      </div>
+      <DataTableFooter table={table} />
     </div>
   );
-}
+};
