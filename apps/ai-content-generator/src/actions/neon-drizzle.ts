@@ -1,12 +1,32 @@
-import { eq } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import { getNeonDrizzleDBInstance } from '../db/neonDrizzle';
 import { userAiContents } from '../db/schema';
 
 const db = getNeonDrizzleDBInstance();
 
-export const getRecords = async () => {
+export const getUsersRecords = async () => {
   try {
-    return await db.select().from(userAiContents);
+    return await db
+      .select()
+      .from(userAiContents)
+      .orderBy(desc(userAiContents.createdAt));
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getUserRecords = async ({
+  email,
+}: {
+  email: string | undefined;
+}) => {
+  if (!email) return;
+  try {
+    return await db
+      .select()
+      .from(userAiContents)
+      .where(eq(userAiContents.userEmail, email))
+      .orderBy(desc(userAiContents.createdAt));
   } catch (e) {
     console.log(e);
   }
