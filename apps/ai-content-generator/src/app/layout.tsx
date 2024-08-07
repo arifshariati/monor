@@ -1,11 +1,9 @@
 import './global.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { ClerkProvider } from '@clerk/nextjs';
 import { ThemeProvider } from '@monor/contexts';
 import { TooltipProvider } from '@monor/ui/shadcn';
-import { ClerkProvider } from '@clerk/nextjs';
-
-const inter = Inter({ subsets: ['latin'] });
+import { inter, lexend } from '@monor/utils/tailwind/fonts';
 
 export const metadata: Metadata = {
   title: 'AI Content Generator',
@@ -20,7 +18,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <ClerkProvider>
       <html suppressHydrationWarning={true} lang="en">
-        <body className={inter.className}>
+        <body className={`${inter.variable} ${lexend.variable}`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
