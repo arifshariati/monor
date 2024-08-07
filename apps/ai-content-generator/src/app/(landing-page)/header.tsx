@@ -19,9 +19,9 @@ const navLinks = [
   { href: '#pricing', text: 'Pricing' },
 ];
 
-const HeaderLandingPage = () => {
+const HeaderLandingPage = ({ user }: { user: any }) => {
   return (
-    <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+    <header className="font-lexend sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm md:w-full lg:gap-6">
         <Link
           href="#"
@@ -79,15 +79,17 @@ const HeaderLandingPage = () => {
           </nav>
         </SheetContent>
       </Sheet>
+
       <div className="flex w-full items-center justify-end gap-4 md:ml-auto md:gap-2 lg:gap-4">
-        <Link href="/sign-in">
-          <Button variant={'outline'}>Sign in</Button>
-        </Link>
-        <Link href="/sign-up">
-          <Button>
-            Get started <span className="hidden lg:inline">&nbsp;today</span>
-          </Button>
-        </Link>
+        {user ? (
+          <Link href="/dashboard">
+            <Button>Get me to the app</Button>
+          </Link>
+        ) : (
+          <Link href="/sign-in">
+            <Button>Login</Button>
+          </Link>
+        )}
       </div>
     </header>
   );
