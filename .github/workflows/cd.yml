@@ -37,8 +37,19 @@ jobs:
         id: set-output
         run: |
           AFFECTED_PROJECTS=$(cat affected.json)
-          echo "next-dashboard=$(echo $AFFECTED_PROJECTS) | grep -c 'next-dashboard')" >> $GITHUB_ENV
-          echo "ai-content-generator=$(echo $AFFECTED_PROJECTS) | grep -c 'ai-content-generator')" >> $GITHUB_ENV
+
+          if [[ $AFFECTED_PROJECTS == *"next-dashboard"* ]]; then
+            echo "::set-output name=next-dashboard::1"
+          else
+            echo "::set-output name=next-dashboard::0"
+          fi
+
+          if [[ $AFFECTED_PROJECTS == *"ai-content-generator"* ]]; then
+            echo "::set-output name=ai-content-generator::1"
+          else
+            echo "::set-output name=ai-content-generator::0"
+          fi
+
   deploy-next-dashboard:
     needs: check-affected
     if: ${{ needs.check-affected.outputs.next-dashboard == '1'}}
