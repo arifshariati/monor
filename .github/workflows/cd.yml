@@ -30,8 +30,9 @@ jobs:
       - name: Check affected projects
         id: affected
         run: |
-          bunx nx show projects --affected --base=origin/main --select=projects > affected.json
-          cat affected.json
+          bunx nx show projects --affected --base=$NX_BASE --head=$NX_HEAD --select=projects > affected.json
+      - name: Display affected projects
+        run: cat affected.json
       - name: Set output for affected projects
         id: set-output
         run: |
