@@ -1,0 +1,87 @@
+name: CD
+
+on:
+  workflow_run:
+    workflows: ['CI']
+    types:
+      - completed
+
+jobs:
+  check-affected:
+    if: ${{ github.event.workflow_run.conclusion == 'success'}}
+    name: Check affected projects
+    runs-on: ubuntu-latest
+    outputs:
+      next-dashboard: ${{ steps.set-output.outputs.next-dashboard }}
+      ai-content-generator: ${{ steps.set-output.outputs.ai-content-generator }}
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Download bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies
+        run: bun install --no-cache
+      - name: 'Derive approperiate SHAs for base and head for `nx affected` commands'
+        uses: nrwl/nx-set-shas@v4
+      - name: Check affected projects
+        id: affected
+        run: |
+          bunx nx show projects --affected --select=projects > affected.json
+          cat affected.json
+      - name: Set output for affected projects
+        id: set-output
+        run: |
+          AFFECTED_PROJECTS=$(cat affected.json)
+          echo "next-dashboard=$(echo $AFFECTED_PROJECTS) | grep -c 'next-dashboard')" >> $GITHUB_ENV
+          echo "ai-content-generator=$(echo $AFFECTED_PROJECTS) | grep -c 'ai-content-generator')" >> $GITHUB_ENV
+  deploy-next-dashboard:
+    needs: check-affected
+    if: ${{ needs.check-affected.outputs.next-dashboard == '1'}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Download bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies
+        run: bun install --no-cache
+      - name: 'Derive approperiate SHAs for base and head for `nx affected` commands'
+        uses: nrwl/nx-set-shas@v4
+      - name: Build next-dashboard project
+        run: bunx nx run next-dashboard:build
+      - name: List build directory contents
+        run: ls -la apps/next-dashboard/.next
+      - name: Deploy 'next-dashboard' project to Vercel
+        run: curl -X POST -d {} ${{ secrets.NEXT_DASHBOARD_VERCEL_DEPLOY_HOOK_URL }}
+
+  deploy-ai-content-generator:
+    needs: check-affected
+    if: ${{ needs.check-affected.outputs.ai-content-generator == '1'}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Download bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies
+        run: bun install --no-cache
+      - name: 'Derive approperiate SHAs for base and head for `nx affected` commands'
+        uses: nrwl/nx-set-shas@v4
+      - name: Build ai-content-generator project
+        run: bunx nx run ai-content-generator:build
+      - name: List build directory contents
+        run: ls -la apps/ai-content-generator/.next
+      - name: Deploy 'ai-content-generator' project to Netlify
+        run: curl -X POST -d {} ${{ secrets.AI_CONTENT_GENERATOR_NETLIFY_DEPLOY_HOOK_URL }}
