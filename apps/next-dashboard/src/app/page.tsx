@@ -1,7 +1,7 @@
 const HomePage = () => {
   return (
     <div>
-      <h1>HomePage Changes to next-dashboard</h1>
+      <h1>HomePage Changes to next-dashboard and another try</h1>
     </div>
   );
 };
