@@ -7,6 +7,8 @@ on:
       - completed
     branches:
       - main
+env:
+  NEXT_PUBLIC_DATABASE_URL: ${{ secrets.NEXT_PUBLIC_DATABASE_URL }}
 
 jobs:
   check-affected:
