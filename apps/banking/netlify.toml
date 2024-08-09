@@ -1,0 +1,6 @@
+[build]
+  command = "bun nx run banking:build"
+  publish = "/apps/banking/.next"
+
+[context.production]
+  ignore = "echo $NETLIFY_TRIGGERED_BY_HOOK | grep -q 'false' && exit 0 || exit 1"
