@@ -1,7 +1,8 @@
 {
   "git": {
     "deploymentEnabled": {
-      "main": false
+      "main": false,
+      "*": false
     }
   },
   "ignoreCommand": "echo $VERCEL_ENV | grep -q 'preview' && exit 1 || exit 0"
