@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "next-dashboard:dev": "bun nx run next-dashboard:dev -p 3000",
+    "banking:dev": "bun nx run banking:dev -p 3000",
+    "banking:e2e": "bun nx run banking-e2e:e2e",
+    "next-dashboard:dev": "bun nx run next-dashboard:dev -p 3001",
     "next-dashboard:e2e": "bun nx run next-dashboard-e2e:e2e",
-    "ai-content-generator:dev": "bun nx run ai-content-generator:dev -p 3001",
+    "ai-content-generator:dev": "bun nx run ai-content-generator:dev -p 3002",
     "ai-content-generator:e2e": "bun nx run ai-content-generator-e2e:e2e",
     "affected:test": "bun nx affected -t test",
     "affected:lint": "bun nx affected -t lint",
