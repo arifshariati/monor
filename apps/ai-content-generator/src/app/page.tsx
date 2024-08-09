@@ -29,7 +29,7 @@ const HomePage = () => {
           {!user && (
             <Link href="/sign-up" className="my-20">
               <Button className="py-8">
-                <p className="text-3xl ">Join the ride NOW 🚀</p>
+                <p className="text-3xl ">Join the ride NOW 🚀 ✅</p>
               </Button>
             </Link>
           )}
