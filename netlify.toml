@@ -1,0 +1,31 @@
+[build]
+  # This is a general build command; however, it will be overridden by specific context commands.
+  command = "echo 'No default build command'"
+
+[build.environment]
+  NETLIFY_TRIGGERED_BY_HOOK = "false"
+
+[context.production]
+  # Ignore automatic builds unless triggered by a hook
+  ignore = "echo $NETLIFY_TRIGGERED_BY_HOOK | grep -q 'false' && exit 0 || exit 1"
+
+# Configuration for the ai-content-generator site
+[[context.production.environment]]
+  site_id = "9af5f5a6-3f86-4802-ac56-8d6aa8fb8240"
+  command = "bun nx run ai-content-generator:build"
+
+# Configuration for the banking site
+[[context.production.environment]]
+  site_id = "f505c952-1d4c-4e63-acdf-b24e2c7c3520"
+  command = "bun nx run banking:build"
+
+[builds]
+  [[builds]]
+  # AI Content Generator site
+  site_id = "9af5f5a6-3f86-4802-ac56-8d6aa8fb8240"
+  command = "bun nx run ai-content-generator:build"
+
+  [[builds]]
+  # Banking site
+  site_id = "f505c952-1d4c-4e63-acdf-b24e2c7c3520"
+  command = "bun nx run banking:build"
