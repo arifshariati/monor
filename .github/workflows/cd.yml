@@ -82,7 +82,7 @@ jobs:
         run: bunx nx run banking:build
       - name: List build directory contents
         run: ls -la apps/banking/.next
-      - name: Deploy 'banking' project to Vercel
+      - name: Deploy 'banking' project to Netlify
         run: curl -X POST -d {} ${{ secrets.BANKING_NETLIFY_DEPLOY_HOOK_URL }}
 
   deploy-next-dashboard:
