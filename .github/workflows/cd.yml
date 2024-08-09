@@ -12,6 +12,7 @@ jobs:
     name: Check affected projects
     runs-on: ubuntu-latest
     outputs:
+      banking: ${{ steps.set-output.outputs.banking }}
       next-dashboard: ${{ steps.set-output.outputs.next-dashboard }}
       ai-content-generator: ${{ steps.set-output.outputs.ai-content-generator }}
     steps:
@@ -38,6 +39,12 @@ jobs:
         run: |
           AFFECTED_PROJECTS=$(cat affected.json)
 
+          if [[ $AFFECTED_PROJECTS == *"banking"* ]]; then
+            echo "::set-output name=banking::1"
+          else
+            echo "::set-output name=banking::0"
+          fi
+
           if [[ $AFFECTED_PROJECTS == *"next-dashboard"* ]]; then
             echo "::set-output name=next-dashboard::1"
           else
@@ -49,6 +56,30 @@ jobs:
           else
             echo "::set-output name=ai-content-generator::0"
           fi
+
+  deploy-banking:
+    needs: check-affected
+    if: ${{ needs.check-affected.outputs.banking == '1'}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Download bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies
+        run: bun install --no-cache
+      - name: 'Derive approperiate SHAs for base and head for `nx affected` commands'
+        uses: nrwl/nx-set-shas@v4
+      - name: Build banking project
+        run: bunx nx run banking:build
+      - name: List build directory contents
+        run: ls -la apps/banking/.next
+      - name: Deploy 'banking' project to Vercel
+        run: curl -X POST -d {} ${{ secrets.BANKING_NETLIFY_DEPLOY_HOOK_URL }}
 
   deploy-next-dashboard:
     needs: check-affected
