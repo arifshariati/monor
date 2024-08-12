@@ -2,10 +2,11 @@ import Link from 'next/link';
 import { Vault } from 'lucide-react';
 import { Sidebar, SidebarLogo } from '@monor/ui/side-bar';
 import { Header, MobileNavSheet } from '@monor/ui/header';
-import {  MobileNavLogo } from '@monor/ui/mobile-nav';
+import { MobileNavLogo } from '@monor/ui/mobile-nav';
 import { SidebarNav } from '@monor/ui/side-bar-nav';
 import { navLinks } from '../../constants/nav-links';
 import MobileNavLinks from '@monor/ui/mobile-nav-links';
+import ModeToggle from '@monor/ui/mode-toggle';
 
 const Logo = () => (
   <Link href="/" className="flex items-center gap-2 font-semibold">
@@ -39,6 +40,9 @@ const RootLayout = ({ children }: RootLayoutProps) => {
             </MobileNavLogo>
             <MobileNavLinks data={navLinks} />
           </MobileNavSheet>
+          <div className="flex gap-4 items-center ml-auto">
+            <ModeToggle />
+          </div>
         </Header>
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
           {children}
