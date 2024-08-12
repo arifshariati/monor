@@ -17,3 +17,4 @@ export * from './toaster';
 export * from './use-toast';
 export * from './separator';
 export * from './navigation-menu';
+export * from './chart';
