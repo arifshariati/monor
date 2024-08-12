@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   description: 'Banking application with NextJs',
 };
 
-type RootLayoutProps = {
+type GlobalLayoutProps = {
   children: React.ReactNode;
 };
 
-export default function RootLayout({ children }: RootLayoutProps) {
+const GlobalLayout = ({ children }: GlobalLayoutProps) => {
   return (
     <html suppressHydrationWarning={true} lang="en">
       <body className={`${inter.variable} ${lexend.variable}`}>
@@ -28,4 +28,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </body>
     </html>
   );
-}
+};
+
+export default GlobalLayout;
