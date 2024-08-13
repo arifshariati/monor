@@ -7,7 +7,7 @@ import {
   Users2,
   NotepadTextDashed,
 } from 'lucide-react';
-import { ILogo, INavLink } from '@monor/interfaces';
+import { ILogo, INavLink } from '@monor/interfaces/nave-types.interface';
 export const logoData: ILogo = {
   text: 'NextJS Dashboard',
   slug: 'ND',

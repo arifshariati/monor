@@ -4,7 +4,7 @@ import { useUser } from '@clerk/nextjs';
 import { columns } from './columns';
 import { DataTable } from './data-table';
 import { getUserRecords } from '../../../actions/neon-drizzle';
-import { toast } from '@monor/ui/shadcn';
+import { toast } from '@monor/ui/shadcn/use-toast';
 import { useUserAiContent } from '../../../store/user-ai-content';
 
 const HistoryPage = () => {

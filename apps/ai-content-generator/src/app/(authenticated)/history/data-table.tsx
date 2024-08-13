@@ -14,7 +14,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@monor/ui/shadcn';
+} from '@monor/ui/shadcn/table';
 import DataTableHeader from './data-table-header';
 import { UserAiContentType } from '../../../db/schema';
 import DataTableFooter from './data-table-footer';

@@ -1,5 +1,5 @@
 import { Table } from '@tanstack/react-table';
-import { Button } from '@monor/ui/shadcn';
+import { Button } from '@monor/ui/shadcn/button';
 import { UserAiContentType } from '../../../db/schema';
 
 type DataTableFooterProps = {

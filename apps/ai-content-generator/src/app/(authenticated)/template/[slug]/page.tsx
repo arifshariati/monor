@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { ChevronLeft } from 'lucide-react';
-import { Button } from '@monor/ui/shadcn';
+import { Button } from '@monor/ui/shadcn/button';
 import { templateList } from '../../../../constants/templates';
 import TemplateCard from './(components)/template-card';
 import { chatSession } from '../../../../utils/gemini-modal';

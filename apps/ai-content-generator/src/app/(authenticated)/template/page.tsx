@@ -1,9 +1,9 @@
 'use client';
-import { Card1 } from '@monor/ui';
-import { templateList } from '../../../constants/templates';
-import { Search } from 'lucide-react';
-import { Input } from '@monor/ui/shadcn';
 import { useState } from 'react';
+import { Search } from 'lucide-react';
+import { Card1 } from '@monor/ui/card';
+import { Input } from '@monor/ui/shadcn/input';
+import { templateList } from '../../../constants/templates';
 
 const TemplatePage = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');

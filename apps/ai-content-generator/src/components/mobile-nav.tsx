@@ -1,6 +1,7 @@
-import { Button, Sheet, SheetContent, SheetTrigger } from '@monor/ui/shadcn';
-import { MobileLogo, MobileNavLinks } from '@monor/ui/side-bar-with-icons-only';
 import { PanelLeft } from 'lucide-react';
+import { Button } from '@monor/ui/shadcn/button';
+import { Sheet, SheetContent, SheetTrigger } from '@monor/ui/shadcn/sheet';
+import { MobileLogo, MobileNavLinks } from '@monor/ui/side-bar-with-icons-only';
 import { logoData, navLinksData, bottomNavLinksData } from '../constants/nav';
 
 const MobileNav = () => {

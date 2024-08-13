@@ -4,17 +4,16 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { generateZodSchema } from '@monor/utils/form-validation';
 import { renderField } from '@monor/ui/dynamic-form';
+import { Button } from '@monor/ui/shadcn/button';
+import { Form, FormField } from '@monor/ui/shadcn/form';
 import {
-  Button,
   Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-  Form,
-  FormField,
-} from '@monor/ui/shadcn';
+} from '@monor/ui/shadcn/card';
 import { ITemplateList } from '../../../../../types/template';
 import { RefreshCcw } from 'lucide-react';
 

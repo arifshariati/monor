@@ -1,13 +1,13 @@
 import { Table } from '@tanstack/react-table';
 import { ChevronDownIcon } from 'lucide-react';
+import { Button } from '@monor/ui/shadcn/button';
+import { Input } from '@monor/ui/shadcn/input';
 import {
-  Button,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-  Input,
-} from '@monor/ui/shadcn';
+} from '@monor/ui/shadcn/dropdown-menu';
 import { UserAiContentType } from '../../../db/schema';
 
 type DataTableHeaderProps = {

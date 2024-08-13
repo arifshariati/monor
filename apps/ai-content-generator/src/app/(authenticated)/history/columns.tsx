@@ -3,7 +3,7 @@ import moment from 'moment';
 import { ColumnDef } from '@tanstack/react-table';
 import { truncateString } from '@monor/utils/strings';
 import { UserAiContentType } from '../../../db/schema';
-import { Button } from '@monor/ui/shadcn';
+import { Button } from '@monor/ui/shadcn/button';
 import { CaretSortIcon } from '@radix-ui/react-icons';
 
 export const columns: ColumnDef<UserAiContentType>[] = [

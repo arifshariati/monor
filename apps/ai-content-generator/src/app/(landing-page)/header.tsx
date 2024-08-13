@@ -1,17 +1,15 @@
 import Link from 'next/link';
 import { Flower, Menu } from 'lucide-react';
+import { Button } from '@monor/ui/shadcn/button';
 import {
-  Button,
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-  Separator,
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from '@monor/ui/shadcn';
+} from '@monor/ui/shadcn/navigation-menu';
+import { Separator } from '@monor/ui/shadcn/separator';
+import { Sheet, SheetContent, SheetTrigger } from '@monor/ui/shadcn/sheet';
 
 const navLinks = [
   { href: '#features', text: 'Features' },

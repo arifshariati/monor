@@ -1,5 +1,5 @@
 import { Search } from 'lucide-react';
-import { Input } from '@monor/ui/shadcn';
+import { Input } from '@monor/ui/shadcn/input';
 import MobileNav from './mobile-nav';
 import { UserButton } from '@clerk/nextjs';
 

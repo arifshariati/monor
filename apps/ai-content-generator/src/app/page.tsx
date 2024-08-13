@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
-import { Button } from '@monor/ui/shadcn';
+import { Button } from '@monor/ui/shadcn/button';
 import HeaderLandingPage from './(landing-page)/header';
 
 const HomePage = () => {

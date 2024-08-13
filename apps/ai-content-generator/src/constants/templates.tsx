@@ -1,5 +1,5 @@
 import { ClipboardType, Lightbulb, TypeOutline } from 'lucide-react';
-import { FormFieldType } from '@monor/types';
+import { FormFieldType } from '@monor/types/form';
 import { YoutubeIcon } from '../statics/icons';
 import { ITemplateList } from '../types/template';
 
