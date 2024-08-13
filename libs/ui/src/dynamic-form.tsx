@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormConfig, FormFieldConfig, FormFieldType } from '@monor/types';
+import { FormConfig, FormFieldConfig, FormFieldType } from '@monor/types/form';
 import { generateZodSchema } from '@monor/utils/form-validation';
 import { Button } from './shadcn/button';
 import {

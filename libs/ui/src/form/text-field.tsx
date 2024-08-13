@@ -8,7 +8,7 @@ import {
 } from '../shadcn/form';
 import { Input } from '../shadcn/input';
 
-import { FormFieldType } from '@monor/types';
+import { FormFieldType } from '@monor/types/form';
 
 type TextFieldProps = {
   field: ControllerRenderProps;

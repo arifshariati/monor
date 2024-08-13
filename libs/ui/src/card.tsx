@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ICard1 } from '@monor/interfaces';
+import { ICard1 } from '@monor/interfaces/card.interface';
 import { Button } from './shadcn/button';
 import {
   Card,

@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from '../shadcn/select';
 
-import { FormOptions } from '@monor/types';
+import { FormOptions } from '@monor/types/form';
 
 type SelectFieldProps = {
   field: ControllerRenderProps;
