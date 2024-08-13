@@ -1,5 +1,5 @@
 import { ArrowRightLeft, Home, Landmark, SendHorizonal } from 'lucide-react';
-import { navLinkType } from '@monor/types';
+import { navLinkType } from '@monor/types/nav-link';
 
 export const navLinks: navLinkType[] = [
   {
