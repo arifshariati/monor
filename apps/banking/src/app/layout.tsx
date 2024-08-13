@@ -1,7 +1,7 @@
 import './global.css';
 import type { Metadata } from 'next';
-import { ThemeProvider } from '@monor/contexts';
-import { TooltipProvider } from '@monor/ui/shadcn';
+import { ThemeProvider } from '@monor/contexts/theme-provider';
+import { TooltipProvider } from '@monor/ui/shadcn/tooltip';
 import { inter, lexend } from '@monor/utils/tailwind/fonts';
 
 export const metadata: Metadata = {

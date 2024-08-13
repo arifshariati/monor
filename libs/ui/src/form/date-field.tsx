@@ -1,19 +1,17 @@
 import { ControllerRenderProps } from 'react-hook-form';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
-import { cn } from '@monor/utils/tailwind';
+import { cn } from '@monor/utils/tailwind/cn';
 import {
   FormControl,
   FormDescription,
   FormItem,
   FormLabel,
   FormMessage,
-  Button,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  Calendar,
-} from '../shadcn';
+} from '../shadcn/form';
+import { Button } from '../shadcn/button';
+import { Popover, PopoverContent, PopoverTrigger } from '../shadcn/popover';
+import { Calendar } from '../shadcn/calendar';
 
 type DateFieledProps = {
   field: ControllerRenderProps;

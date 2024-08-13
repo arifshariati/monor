@@ -15,13 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@monor/contexts": ["libs/contexts/src/index.tsx"],
       "@monor/contexts/*": ["libs/contexts/src/*"],
-      "@monor/interfaces": ["libs/interfaces/src/index.ts"],
-      "@monor/types": ["libs/types/src/index.ts"],
-      "@monor/ui": ["libs/ui/src/index.ts"],
+      "@monor/interfaces/*": ["libs/interfaces/src/*"],
+      "@monor/types/*": ["libs/types/src/*"],
       "@monor/ui/*": ["libs/ui/src/*"],
-      "@monor/utils": ["libs/utils/src/index.ts"],
       "@monor/utils/*": ["libs/utils/src/*"]
     }
   },

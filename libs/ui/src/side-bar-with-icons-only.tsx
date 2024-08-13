@@ -1,8 +1,8 @@
 'use client';
 import Link from 'next/link';
-import { ILogo, INavLink } from '@monor/interfaces';
-import { Tooltip, TooltipContent, TooltipTrigger } from './shadcn';
-import { cn } from '@monor/utils/tailwind';
+import { ILogo, INavLink } from '@monor/interfaces/nave-types.interface';
+import { Tooltip, TooltipContent, TooltipTrigger } from './shadcn/tooltip';
+import { cn } from '@monor/utils/tailwind/cn';
 import { usePathname } from 'next/navigation';
 
 type SideBarWithIconsOnlyProps = { children: React.ReactNode };

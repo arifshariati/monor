@@ -11,7 +11,7 @@ import {
   useFormContext,
 } from 'react-hook-form';
 
-import { cn } from '@monor/utils/tailwind';
+import { cn } from '@monor/utils/tailwind/cn';
 import { Label } from './label';
 
 const Form = FormProvider;

@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Card1 } from './card';
-import { ICard1 } from '@monor/interfaces';
+import { ICard1 } from '@monor/interfaces/card.interface';
 
 const readOnlyCardData: ICard1 = {
   title: 'card-title',

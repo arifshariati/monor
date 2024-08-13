@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { cn } from '@monor/utils/tailwind';
+import { cn } from '@monor/utils/tailwind/cn';
 
 const Card = React.forwardRef<
   HTMLDivElement,

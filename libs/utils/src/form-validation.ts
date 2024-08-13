@@ -1,5 +1,6 @@
 import { z, ZodSchema, ZodTypeAny } from 'zod';
-import { zodMappings, ZodMethodType, ValidationRule } from '@monor/types';
+import { ValidationRule } from '@monor/types/form';
+import { zodMappings, ZodMethodType } from '@monor/types/zod-mappings';
 
 type FormFieldConfig = {
   name: string;

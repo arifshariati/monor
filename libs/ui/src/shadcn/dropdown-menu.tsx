@@ -6,7 +6,7 @@ import {
   DotFilledIcon,
 } from '@radix-ui/react-icons';
 
-import { cn } from '@monor/utils/tailwind';
+import { cn } from '@monor/utils/tailwind/cn';
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 

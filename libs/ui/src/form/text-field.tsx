@@ -5,8 +5,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  Input,
-} from '../shadcn';
+} from '../shadcn/form';
+import { Input } from '../shadcn/input';
 
 import { FormFieldType } from '@monor/types';
 

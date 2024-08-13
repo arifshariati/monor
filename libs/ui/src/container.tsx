@@ -1,4 +1,4 @@
-import { cn } from '@monor/utils/tailwind';
+import { cn } from '@monor/utils/tailwind/cn';
 type ContainerType = {
   children: React.ReactNode;
   className?: string;

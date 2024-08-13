@@ -1,9 +1,9 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { navLinkType } from '@monor/types';
-import { cn } from '@monor/utils/tailwind';
-import { SheetClose } from './shadcn';
+import { navLinkType } from '@monor/types/nav-link';
+import { cn } from '@monor/utils/tailwind/cn';
+import { SheetClose } from './shadcn/sheet';
 
 type MobileNavLinksProps = {
   data: navLinkType[];

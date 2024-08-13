@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
 import { Container } from './container';
-import { cn } from '@monor/utils/tailwind';
+import { cn } from '@monor/utils/tailwind/cn';
 
 jest.mock('@monor/utils/tailwind', () => ({
   cn: jest.fn((...classes) => classes.filter(Boolean).join(' ')),

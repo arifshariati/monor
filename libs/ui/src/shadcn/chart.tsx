@@ -7,7 +7,7 @@ import {
   ValueType,
 } from 'recharts/types/component/DefaultTooltipContent';
 
-import { cn } from '@monor/utils/tailwind';
+import { cn } from '@monor/utils/tailwind/cn';
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: '', dark: '.dark' } as const;

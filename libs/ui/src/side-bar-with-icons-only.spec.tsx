@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
-import { TooltipProvider } from './shadcn';
+import { TooltipProvider } from './shadcn/tooltip';
 import {
   SideBarWithIconsOnly,
   Logo,

@@ -1,12 +1,12 @@
 'use client';
 import { useTheme } from 'next-themes';
+import { Button } from './shadcn/button';
 import {
-  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from './shadcn';
+} from './shadcn/dropdown-menu';
 import { MoonIcon, SunIcon } from 'lucide-react';
 
 const ModeToggle = () => {

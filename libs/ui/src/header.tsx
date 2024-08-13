@@ -1,5 +1,6 @@
 import { Menu } from 'lucide-react';
-import { Button, Sheet, SheetContent, SheetTrigger } from './shadcn';
+import { Button } from './shadcn/button';
+import { Sheet, SheetContent, SheetTrigger } from './shadcn/sheet';
 
 type HeaderProps = {
   children: React.ReactNode;

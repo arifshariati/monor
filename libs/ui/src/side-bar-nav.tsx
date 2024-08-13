@@ -1,6 +1,6 @@
 'use client';
-import { navLinkType } from '@monor/types';
-import { cn } from '@monor/utils/tailwind';
+import { navLinkType } from '@monor/types/nav-link';
+import { cn } from '@monor/utils/tailwind/cn';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 

@@ -5,8 +5,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  Textarea,
-} from '../shadcn';
+} from '../shadcn/form';
+import { Textarea } from '../shadcn/textarea';
 
 type TextareaFieldProps = {
   field: ControllerRenderProps;

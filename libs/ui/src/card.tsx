@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import { ICard1 } from '@monor/interfaces';
+import { Button } from './shadcn/button';
 import {
-  Button,
   Card,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from './shadcn';
+} from './shadcn/card';
 
 type Card1Type = { data: ICard1 };
 

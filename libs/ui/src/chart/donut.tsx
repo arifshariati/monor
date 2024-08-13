@@ -11,13 +11,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '../shadcn';
+} from '../shadcn/card';
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from '../shadcn';
+} from '../shadcn/chart';
 
 const chartData = [
   { browser: 'chrome', visitors: 275, fill: 'var(--color-chrome)' },

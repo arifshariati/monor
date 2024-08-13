@@ -3,18 +3,20 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormConfig, FormFieldConfig, FormFieldType } from '@monor/types';
 import { generateZodSchema } from '@monor/utils/form-validation';
+import { Button } from './shadcn/button';
 import {
-  Button,
   Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-  Form,
-  FormField,
-} from './shadcn';
-import { DateFieled, SelectField, TextareaField, TextField } from './form';
+} from './shadcn/card';
+import { Form, FormField } from './shadcn/form';
+import { DateFieled } from './form/date-field';
+import { SelectField } from './form/select-field';
+import { TextareaField } from './form/text-area-field';
+import { TextField } from './form/text-field';
 
 type DynamicFormProps = {
   config: FormConfig;

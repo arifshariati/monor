@@ -5,12 +5,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+} from '../shadcn/form';
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../shadcn';
+} from '../shadcn/select';
 
 import { FormOptions } from '@monor/types';
 
