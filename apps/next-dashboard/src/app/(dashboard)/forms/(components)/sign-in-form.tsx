@@ -1,5 +1,5 @@
 'use client';
-import { DynamicForm } from '@monor/ui';
+import { DynamicForm } from '@monor/ui/dynamic-form';
 import { formConfig } from './sign-in-form-config';
 
 const SignInForm = () => {

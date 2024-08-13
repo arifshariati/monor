@@ -1,8 +1,8 @@
 import './global.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { ThemeProvider } from '@monor/contexts';
-import { TooltipProvider } from '@monor/ui/shadcn';
+import { ThemeProvider } from '@monor/contexts/theme-provider';
+import { TooltipProvider } from '@monor/ui/shadcn/tooltip';
 
 const inter = Inter({ subsets: ['latin'] });
 

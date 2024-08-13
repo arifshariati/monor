@@ -1,4 +1,4 @@
-import { FormConfig, FormFieldType } from '@monor/types';
+import { FormConfig, FormFieldType } from '@monor/types/form';
 
 export const formConfig: FormConfig = {
   title: 'Login',
