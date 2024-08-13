@@ -3,7 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import MobileNav from './mobile-nav';
 import { bottomNavLinksData, logoData, navLinksData } from '../constants/nav';
 
-jest.mock('@monor/ui/shadcn', () => ({
+jest.mock('@monor/ui/shadcn/button', () => ({
   Button: ({
     children,
     className,
@@ -11,6 +11,8 @@ jest.mock('@monor/ui/shadcn', () => ({
     children: React.ReactNode;
     className?: string;
   }) => <button className={className}>{children}</button>,
+}));
+jest.mock('@monor/ui/shadcn/sheet', () => ({
   Sheet: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
   SheetContent: ({
     side,
