@@ -17,6 +17,7 @@
     "paths": {
       "@monor/contexts/*": ["libs/contexts/src/*"],
       "@monor/interfaces/*": ["libs/interfaces/src/*"],
+      "@monor/providers": ["libs/providers/src/*"],
       "@monor/types/*": ["libs/types/src/*"],
       "@monor/ui/*": ["libs/ui/src/*"],
       "@monor/utils/*": ["libs/utils/src/*"]
