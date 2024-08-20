@@ -28,7 +28,12 @@ export const TextField = ({
   <FormItem className="space-y-0.5">
     <FormLabel>{label}</FormLabel>
     <FormControl>
-      <Input type={type} placeholder={placeholder} {...field} />
+      <Input
+        type={type}
+        placeholder={placeholder}
+        autoComplete={field.name}
+        {...field}
+      />
     </FormControl>
     {description && <FormDescription>{description}</FormDescription>}
     <FormMessage />
