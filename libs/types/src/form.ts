@@ -39,7 +39,7 @@ export type FormFieldConfig = {
 export type FormConfig = {
   title?: string;
   description?: string;
-  submitButtonText: string;
+  submitButtonText?: string;
   fields: FormFieldConfig[];
   defaultValues: { [key: string]: any };
 };
