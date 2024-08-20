@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormConfig, FormFieldConfig, FormFieldType } from '@monor/types/form';
+import {
+  FormConfig,
+  FormFieldConfig,
+  FormFieldType,
+  FormOptions,
+} from '@monor/types/form';
 import { generateZodSchema } from '@monor/utils/form-validation';
 import { Button } from './shadcn/button';
 import {
@@ -28,6 +33,7 @@ export const renderField = (field: FormFieldConfig, controllerField: any) => {
     case FormFieldType.Text:
     case FormFieldType.Email:
     case FormFieldType.Password:
+    default:
       return (
         <TextField
           field={controllerField}
@@ -44,7 +50,7 @@ export const renderField = (field: FormFieldConfig, controllerField: any) => {
           label={field.label}
           placeholder={field.placeholder}
           description={field.description}
-          options={field.options!}
+          options={field.options as FormOptions[]}
         />
       );
     case FormFieldType.Date:
@@ -64,8 +70,6 @@ export const renderField = (field: FormFieldConfig, controllerField: any) => {
           description={field.description}
         />
       );
-    default:
-      return <></>;
   }
 };
 
