@@ -25,6 +25,7 @@ type RootLayoutProps = {
 const RootLayout = async ({ children }: RootLayoutProps) => {
   const loggedIn = await getLoggedInUsers();
   if (!loggedIn) redirect('/sign-in');
+
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block px-2 lg:px-4">
@@ -34,7 +35,7 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
           </SidebarLogo>
           <div className="flex flex-col flex-1 gap-4 ">
             <SidebarNav data={navLinks} />
-            <UserBox />
+            <UserBox name={loggedIn.name} email={loggedIn.email} />
           </div>
         </Sidebar>
       </div>
@@ -45,7 +46,7 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
               <Logo />
             </MobileNavLogo>
             <MobileNavLinks data={navLinks} />
-            <UserBox />
+            <UserBox name={loggedIn.name} email={loggedIn.email} />
           </MobileNavSheet>
           <div className="flex gap-4 items-center ml-auto">
             <ModeToggle />
