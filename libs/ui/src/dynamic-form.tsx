@@ -22,11 +22,7 @@ import { DateFieled } from './form/date-field';
 import { SelectField } from './form/select-field';
 import { TextareaField } from './form/text-area-field';
 import { TextField } from './form/text-field';
-
-type DynamicFormProps = {
-  config: FormConfig;
-  onSubmit: SubmitHandler<any>;
-};
+import { RefreshCcw } from 'lucide-react';
 
 export const renderField = (field: FormFieldConfig, controllerField: any) => {
   switch (field.type) {
@@ -73,7 +69,17 @@ export const renderField = (field: FormFieldConfig, controllerField: any) => {
   }
 };
 
-export const DynamicForm = ({ config, onSubmit }: DynamicFormProps) => {
+type DynamicFormProps = {
+  config: FormConfig;
+  onSubmit: SubmitHandler<any>;
+  isLoading?: boolean;
+};
+
+export const DynamicForm = ({
+  config,
+  onSubmit,
+  isLoading,
+}: DynamicFormProps) => {
   const schema = generateZodSchema(config.fields);
   const form = useForm({
     resolver: zodResolver(schema),
@@ -103,7 +109,9 @@ export const DynamicForm = ({ config, onSubmit }: DynamicFormProps) => {
             ))}
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading && <RefreshCcw className="animate-spin mr-2 size-5" />}{' '}
+              &nbsp;
               {config.submitButtonText}
             </Button>
           </CardFooter>
