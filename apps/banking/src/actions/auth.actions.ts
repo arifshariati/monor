@@ -102,3 +102,16 @@ export const getLoggedInUsers = async () => {
     return null;
   }
 };
+
+export const logOutUser = async () => {
+  try {
+    const { account } = await createSessionClient();
+    cookies().delete('appwrite-session');
+
+    await account.deleteSession('current');
+  } catch (error) {
+    if (error instanceof AppwriteException) {
+      console.warn(error.response);
+    }
+  }
+};
