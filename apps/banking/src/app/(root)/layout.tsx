@@ -1,12 +1,14 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { Vault } from 'lucide-react';
 import { Sidebar, SidebarLogo } from '@monor/ui/side-bar';
 import { Header, MobileNavSheet } from '@monor/ui/header';
 import { MobileNavLogo } from '@monor/ui/mobile-nav';
 import { SidebarNav } from '@monor/ui/side-bar-nav';
-import { navLinks } from '../../constants/nav-links';
 import MobileNavLinks from '@monor/ui/mobile-nav-links';
 import ModeToggle from '@monor/ui/mode-toggle';
+import { navLinks } from '../../constants/nav-links';
+import { getLoggedInUsers } from '../../actions/auth.actions';
 
 const Logo = () => (
   <Link href="/" className="flex items-center gap-2 font-semibold">
@@ -19,7 +21,9 @@ type RootLayoutProps = {
   children: React.ReactNode;
 };
 
-const RootLayout = ({ children }: RootLayoutProps) => {
+const RootLayout = async ({ children }: RootLayoutProps) => {
+  const loggedIn = await getLoggedInUsers();
+  if (!loggedIn) redirect('/sign-in');
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
