@@ -1,5 +1,5 @@
 'use server';
-import { ID, Query } from 'node-appwrite';
+import { AppwriteException, ID, Query } from 'node-appwrite';
 import { cookies } from 'next/headers';
 import { parseStringify } from '@monor/utils/js';
 import { createAdminClient, createSessionClient } from '../lib/appwrite';
@@ -24,7 +24,9 @@ export const getUserInfo = async ({ userId }: GetUserInfoProps) => {
     );
     return parseStringify(user.documents[0]);
   } catch (error) {
-    console.error('Error', error);
+    if (error instanceof AppwriteException) {
+      console.warn(error.response);
+    }
   }
 };
 
@@ -46,8 +48,10 @@ export const signIn = async ({ email, password }: SignInProps) => {
 
     const user = await getUserInfo({ userId: session.userId });
     return parseStringify(user);
-  } catch (error) {
-    console.error('Error', error);
+  } catch (error: unknown) {
+    if (error instanceof AppwriteException) {
+      console.warn(error.response);
+    }
   }
 };
 
@@ -84,7 +88,9 @@ export const signUp = async ({ password, ...userData }: SignUpProps) => {
     });
     return parseStringify(newUserAccount);
   } catch (error) {
-    console.error('Error', error);
+    if (error instanceof AppwriteException) {
+      console.warn(error.response);
+    }
   }
 };
 
