@@ -1,11 +1,9 @@
-import { redirect } from 'next/navigation';
 import { getLoggedInUsers } from '../../actions/auth.actions';
 import PageHeader from '../../components/page-header';
 import SummaryChart from '../../components/summary-chart';
 
 const RootPage = async () => {
-  const loggedIn = await getLoggedInUsers();
-  if (!loggedIn) redirect('/sign-in');
+  const userDetails = await getLoggedInUsers();
 
   return (
     <div className="flex gap-4">
@@ -14,7 +12,7 @@ const RootPage = async () => {
           type="greeting"
           title="Welcome"
           subtext="Manage your transactions effeciently"
-          user={loggedIn.name}
+          user={userDetails?.name}
         />
         <SummaryChart accounts={[]} totalBanks={5} totalCurrentBalance={5400} />
       </div>
