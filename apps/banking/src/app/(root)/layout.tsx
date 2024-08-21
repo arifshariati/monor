@@ -9,6 +9,7 @@ import MobileNavLinks from '@monor/ui/mobile-nav-links';
 import ModeToggle from '@monor/ui/mode-toggle';
 import { navLinks } from '../../constants/nav-links';
 import { getLoggedInUsers } from '../../actions/auth.actions';
+import UserBox from '../../components/user-box';
 
 const Logo = () => (
   <Link href="/" className="flex items-center gap-2 font-semibold">
@@ -26,13 +27,14 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
   if (!loggedIn) redirect('/sign-in');
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-      <div className="hidden border-r bg-muted/40 md:block">
+      <div className="hidden border-r bg-muted/40 md:block px-2 lg:px-4">
         <Sidebar>
           <SidebarLogo>
             <Logo />
           </SidebarLogo>
-          <div className="flex-1">
+          <div className="flex flex-col flex-1 gap-4 ">
             <SidebarNav data={navLinks} />
+            <UserBox />
           </div>
         </Sidebar>
       </div>
@@ -43,6 +45,7 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
               <Logo />
             </MobileNavLogo>
             <MobileNavLinks data={navLinks} />
+            <UserBox />
           </MobileNavSheet>
           <div className="flex gap-4 items-center ml-auto">
             <ModeToggle />

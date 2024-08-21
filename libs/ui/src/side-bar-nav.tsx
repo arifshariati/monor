@@ -12,7 +12,7 @@ export const SidebarNav = ({ data }: SidebarNavProps) => {
   const pathname = usePathname();
   if (!data.length) return;
   return (
-    <nav className="flex flex-col  gap-2 px-2 text-sm font-medium lg:px-4">
+    <nav className="flex flex-col  gap-2 text-sm font-medium">
       {data.map(({ href, text, icon }) => (
         <Link
           key={text}
