@@ -13,9 +13,6 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
-  sentry: {
-    hideSourceMaps: true,
-  }
 };
 
 const sentryWebpackPluginOptions = {
@@ -41,9 +38,5 @@ const plugins = [
   withNx,
 ];
 
-module.exports = composePlugins(...plugins)(nextConfig);
-module.exports = async (/** @type {string} */phase) => {
-  const nxConfig = withNx(nextConfig)
-  const config = await nxConfig(phase)
-  return withSentryConfig(config, sentryWebpackPluginOptions)
-}
+const composedConfig = composePlugins(...plugins)(nextConfig);
+module.exports = withSentryConfig(composedConfig, sentryWebpackPluginOptions)
