@@ -35,7 +35,7 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
           </SidebarLogo>
           <div className="flex flex-col flex-1 gap-4 ">
             <SidebarNav data={navLinks} />
-            <UserBox name={loggedIn.name} email={loggedIn.email} />
+            <UserBox name={loggedIn.name} email={loggedIn.email} logOutButton />
           </div>
         </Sidebar>
       </div>
@@ -46,7 +46,7 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
               <Logo />
             </MobileNavLogo>
             <MobileNavLinks data={navLinks} />
-            <UserBox name={loggedIn.name} email={loggedIn.email} />
+            <UserBox name={loggedIn.name} email={loggedIn.email} logOutButton />
           </MobileNavSheet>
           <div className="flex gap-4 items-center ml-auto">
             <ModeToggle />
