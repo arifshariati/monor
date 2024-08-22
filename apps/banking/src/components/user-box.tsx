@@ -8,8 +8,9 @@ import { logOutUser } from '../actions/auth.actions';
 type UserBoxProps = {
   name: string;
   email: string;
+  logOutButton?: boolean;
 };
-const UserBox = ({ name, email }: UserBoxProps) => {
+const UserBox = ({ name, email, logOutButton }: UserBoxProps) => {
   const router = useRouter();
   const handleLogOut = async () => {
     await logOutUser();
@@ -28,7 +29,7 @@ const UserBox = ({ name, email }: UserBoxProps) => {
         </p>
         <p className="text-xs text-accent-foreground">{email}</p>
       </div>
-      <LogOut onClick={handleLogOut} cursor={'pointer'} />
+      {logOutButton && <LogOut onClick={handleLogOut} cursor={'pointer'} />}
     </div>
   );
 };
