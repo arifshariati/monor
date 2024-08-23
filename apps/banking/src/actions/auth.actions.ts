@@ -3,6 +3,8 @@ import { AppwriteException, ID, Query } from 'node-appwrite';
 import { cookies } from 'next/headers';
 import { parseStringify } from '@monor/utils/js';
 import { createAdminClient, createSessionClient } from '../lib/appwrite';
+import { createDwollaCustomer } from './dwolla.actions';
+import { extractCustomerIdFromUrl } from '../lib/utils';
 
 const {
   APPWRITE_DATABASE_ID: DATABASE_ID,
@@ -56,37 +58,61 @@ export const signIn = async ({ email, password }: SignInProps) => {
 };
 
 export type SignUpProps = {
-  name: string;
+  firstName: string;
+  lastName: string;
   address1: string;
   city: string;
   state: string;
   postalCode: string;
-  dob: string;
+  dateOfBirth: string;
   ssn: string;
   email: string;
   password: string;
 };
 
 export const signUp = async ({ password, ...userData }: SignUpProps) => {
-  const { name, email } = userData;
+  const { firstName, lastName, email } = userData;
+  let newUserAccount;
   try {
     const { account, database } = await createAdminClient();
-    const newUserAccount = await account.create(
+    newUserAccount = await account.create(
       ID.unique(),
       email,
       password,
-      name
+      `${firstName} ${lastName}`
     );
     if (!newUserAccount) throw new Error('Error creating user');
 
+    const dwollaCustomerUrl = await createDwollaCustomer({
+      ...userData,
+      type: 'personal',
+    });
+
+    if (!dwollaCustomerUrl) throw new Error('Error creating Dwolla customer');
+
+    const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl);
+
+    const newUser = await database.createDocument(
+      DATABASE_ID!,
+      USER_COLLECTION_ID!,
+      ID.unique(),
+      {
+        ...userData,
+        userId: newUserAccount.$id,
+        dwollaCustomerId,
+        dwollaCustomerUrl,
+      }
+    );
+
     const session = await account.createEmailPasswordSession(email, password);
+
     cookies().set('appwrite-session', session.secret, {
       path: '/',
       httpOnly: true,
       sameSite: 'strict',
       secure: true,
     });
-    return parseStringify(newUserAccount);
+    return parseStringify(newUser);
   } catch (error) {
     if (error instanceof AppwriteException) {
       console.warn(error.response);
