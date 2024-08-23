@@ -9,6 +9,9 @@ on:
       - main
 env:
   NEXT_PUBLIC_DATABASE_URL: ${{ secrets.NEXT_PUBLIC_DATABASE_URL }}
+  DWOLLA_ENV: ${{ secrets.DWOLLA_ENV }}
+  DWOLLA_KEY: ${{ secrets.DWOLLA_KEY}}
+  DWOLLA_SECRET: ${{ secrets.DWOLLA_SECRET }}
 
 jobs:
   check-affected:

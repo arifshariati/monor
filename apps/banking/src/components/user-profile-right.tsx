@@ -18,7 +18,7 @@ const UserProfileRight = ({
   return (
     <aside className="hidden max-h-screen flex-col xl:flex w-[355px] p-2 bg-blue-100/20 rounded-lg">
       <section className="flex flex-col pb-8">
-        <UserBox name={user.name} email={user.email} />
+        <UserBox name={user.firstName} email={user.email} />
       </section>
       <section></section>
     </aside>
