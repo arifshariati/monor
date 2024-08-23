@@ -6,13 +6,23 @@ export const formConfig: FormConfig = {
   submitButtonText: 'Create Account',
   fields: [
     {
-      name: 'name',
-      label: 'Full Name',
-      placeholder: 'Enter your full name',
+      name: 'firstName',
+      label: 'First Name',
+      placeholder: 'Enter your first name',
       type: FormFieldType.Text,
       validation: {
         type: 'string',
-        rules: [{ method: 'min', params: [8] }],
+        rules: [{ method: 'min', params: [1] }],
+      },
+    },
+    {
+      name: 'lastName',
+      label: 'Last Name',
+      placeholder: 'Enter your last name',
+      type: FormFieldType.Text,
+      validation: {
+        type: 'string',
+        rules: [{ method: 'min', params: [1] }],
       },
     },
     {
@@ -56,7 +66,7 @@ export const formConfig: FormConfig = {
       },
     },
     {
-      name: 'dob',
+      name: 'dateOfBirth',
       label: 'DOB',
       placeholder: 'Enter your DOB',
       type: FormFieldType.Date,
@@ -100,12 +110,13 @@ export const formConfig: FormConfig = {
     },
   ],
   defaultValues: {
-    name: '',
+    firstName: '',
+    lastName: '',
     address1: '',
     city: '',
     state: '',
     postalCode: '',
-    dob: '',
+    dateOfBirth: '',
     ssn: '',
     email: '',
     password: '',
