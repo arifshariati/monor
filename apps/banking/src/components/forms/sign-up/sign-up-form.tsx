@@ -16,7 +16,10 @@ const SignUpForm = () => {
       await signUp(values);
       router.push('/');
     } catch (error: unknown) {
-      console.log(error);
+      console.error(
+        'Error while signing up user.',
+        JSON.stringify(error, null, 2)
+      );
     } finally {
       setIsLoading(false);
     }

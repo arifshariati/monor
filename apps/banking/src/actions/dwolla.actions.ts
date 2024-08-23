@@ -27,12 +27,15 @@ const dwollaClient = new Client({
 export const createOnDemandAuthorization = async () => {
   try {
     const onDemandAuthorization = await dwollaClient.post(
-      'on-demand-authorization'
+      'on-demand-authorizations'
     );
 
     return onDemandAuthorization.body._links;
   } catch (error) {
-    console.error('Creating an on demand authorization failed', error);
+    console.error(
+      'Creating an on demand authorization failed',
+      JSON.stringify(error, null, 2)
+    );
   }
 };
 
@@ -54,8 +57,6 @@ export const createDwollaCustomer = async ({
 }: CreateDwollaCustomerProps) => {
   try {
     const formatedDOB = new Date(dateOfBirth).toLocaleDateString('en-CA');
-
-    console.log({ formatedDOB });
 
     const response = await dwollaClient.post('customers', {
       dateOfBirth: formatedDOB,
@@ -118,6 +119,7 @@ export const addFundingSource = async ({
 }: AddFundingSourceProps) => {
   try {
     const dwollaAuthLinks = await createOnDemandAuthorization();
+    if (!dwollaAuthLinks) return;
 
     const fundingSourceOptions = {
       customerId: dwollaCustomerId,
@@ -128,7 +130,7 @@ export const addFundingSource = async ({
 
     return await createFundingSource(fundingSourceOptions);
   } catch (err) {
-    console.error('Transfer fund failed: ', err);
+    console.error('Transfer fund failed: ', JSON.stringify(err, null, 2));
   }
 };
 
