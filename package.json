@@ -49,6 +49,7 @@
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.32.1",
+    "dwolla-v2": "^3.4.0",
     "immer": "^10.1.1",
     "lucide-react": "^0.427.0",
     "moment": "^2.30.1",
