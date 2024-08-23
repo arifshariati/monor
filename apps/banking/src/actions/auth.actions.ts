@@ -123,7 +123,10 @@ export const signUp = async ({ password, ...userData }: SignUpProps) => {
 export const getLoggedInUsers = async () => {
   try {
     const { account } = await createSessionClient();
-    return await account.get();
+    const result = await account.get();
+
+    const user = await getUserInfo({ userId: result.$id });
+    return parseStringify(user);
   } catch (error) {
     return null;
   }
