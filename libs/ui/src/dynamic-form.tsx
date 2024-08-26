@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { RefreshCcw } from 'lucide-react';
+import { cn } from '@monor/utils/tailwind/cn';
 import {
   FormConfig,
   FormFieldConfig,
@@ -22,7 +24,6 @@ import { DateFieled } from './form/date-field';
 import { SelectField } from './form/select-field';
 import { TextareaField } from './form/text-area-field';
 import { TextField } from './form/text-field';
-import { RefreshCcw } from 'lucide-react';
 
 export const renderField = (field: FormFieldConfig, controllerField: any) => {
   switch (field.type) {
@@ -86,6 +87,14 @@ export const DynamicForm = ({
     defaultValues: config.defaultValues,
   });
 
+  // group fields by 'group' property
+  const groupedFields = config.fields.reduce((acc, field) => {
+    const groupKey = field.group || field.name;
+    if (!acc[groupKey]) acc[groupKey] = [];
+    acc[groupKey].push(field);
+    return acc;
+  }, {} as Record<string, FormFieldConfig[]>);
+
   return (
     <Card>
       <CardHeader>
@@ -97,15 +106,29 @@ export const DynamicForm = ({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <CardContent className="space-y-1">
-            {config.fields.map((field) => (
-              <FormField
-                key={field.name}
-                control={form.control}
-                name={field.name}
-                render={({ field: controllerField }) =>
-                  renderField(field, controllerField)
-                }
-              />
+            {Object.entries(groupedFields).map(([groupKey, fields]) => (
+              <div
+                key={groupKey}
+                className={cn(
+                  'flex',
+                  fields.length > 1
+                    ? 'flex-row justify-between gap-2'
+                    : 'flex-col'
+                )}
+              >
+                {fields.map((field) => (
+                  <div className="w-full">
+                    <FormField
+                      key={field.name}
+                      control={form.control}
+                      name={field.name}
+                      render={({ field: controllerField }) =>
+                        renderField(field, controllerField)
+                      }
+                    />
+                  </div>
+                ))}
+              </div>
             ))}
           </CardContent>
           <CardFooter>
