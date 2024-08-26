@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { DynamicForm } from '@monor/ui/dynamic-form';
 import { formConfig } from './sign-up-form-config';
@@ -25,12 +26,19 @@ const SignUpForm = () => {
     }
   };
   return (
-    <div className="p-4 w-full lg:w-[500px]">
+    <div className="flex flex-col gap-2 p-4 w-full lg:w-[500px]">
       <DynamicForm
         config={formConfig}
         onSubmit={handleSubmit}
         isLoading={isLoading}
       />
+      <div className="flex gap-2 items-center justify-center text-sm">
+        Already have an account?
+        <Link href={'/sign-in'} className="underline">
+          {' '}
+          Sign In
+        </Link>
+      </div>
     </div>
   );
 };
