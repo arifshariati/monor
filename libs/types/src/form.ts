@@ -34,6 +34,7 @@ export type FormFieldConfig = {
     type: ZodMethodType;
     rules: ValidationRule[];
   };
+  group?: string;
 };
 
 export type FormConfig = {

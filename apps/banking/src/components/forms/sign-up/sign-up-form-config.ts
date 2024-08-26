@@ -14,6 +14,7 @@ export const formConfig: FormConfig = {
         type: 'string',
         rules: [{ method: 'min', params: [1] }],
       },
+      group: 'name',
     },
     {
       name: 'lastName',
@@ -24,6 +25,7 @@ export const formConfig: FormConfig = {
         type: 'string',
         rules: [{ method: 'min', params: [1] }],
       },
+      group: 'name',
     },
     {
       name: 'address1',
@@ -54,6 +56,7 @@ export const formConfig: FormConfig = {
         type: 'string',
         rules: [],
       },
+      group: 'address',
     },
     {
       name: 'postalCode',
@@ -64,6 +67,7 @@ export const formConfig: FormConfig = {
         type: 'string',
         rules: [],
       },
+      group: 'address',
     },
     {
       name: 'dateOfBirth',
