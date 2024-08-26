@@ -31,7 +31,7 @@ const RootPage = async ({ searchParams: { id, page } }: SearchParamProps) => {
           user={userDetails?.name}
         />
         <SummaryChart
-          accounts={accounts}
+          accounts={accounts?.data}
           totalBanks={accounts?.totalBanks}
           totalCurrentBalance={accounts?.totalCurrentBalance}
         />
