@@ -1,8 +1,8 @@
 import { getLoggedInUsers } from '../../actions/auth.actions';
 import { getAccount, getAccounts } from '../../actions/bank.actions';
 import PageHeader from '../../components/page-header';
+import RecentTransactions from '../../components/recent-transactions';
 import SummaryChart from '../../components/summary-chart';
-import UserProfileRight from '../../components/user-profile-right';
 
 type SearchParamProps = {
   params: { [key: string]: string };
@@ -10,6 +10,7 @@ type SearchParamProps = {
 };
 
 const RootPage = async ({ searchParams: { id, page } }: SearchParamProps) => {
+  const currentPage = Number(page as string) || 1;
   const userDetails = await getLoggedInUsers();
   if (!userDetails) return;
 
@@ -23,7 +24,7 @@ const RootPage = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
   return (
     <div className="flex gap-4">
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-1">
         <PageHeader
           type="greeting"
           title="Welcome"
@@ -31,13 +32,16 @@ const RootPage = async ({ searchParams: { id, page } }: SearchParamProps) => {
           user={userDetails?.name}
         />
         <SummaryChart
-          accounts={accounts?.data}
+          accounts={accountsData}
           totalBanks={accounts?.totalBanks}
           totalCurrentBalance={accounts?.totalCurrentBalance}
         />
-      </div>
-      <div className="ml-auto">
-        <UserProfileRight user={userDetails} />
+        <RecentTransactions
+          accounts={accountsData}
+          transactions={account?.transactions}
+          appwriteItemId={appwriteItemId}
+          page={currentPage}
+        />
       </div>
     </div>
   );
