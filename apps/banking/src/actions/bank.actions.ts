@@ -92,7 +92,7 @@ export const getAccounts = async ({ userId }: { userId: string }) => {
           type: accountData.type!,
           subtype: accountData.subtype!,
           appwriteItemId: bank.$id,
-          sharaebleId: bank.shareableId,
+          shareableId: bank.shareableId,
         };
 
         return account;

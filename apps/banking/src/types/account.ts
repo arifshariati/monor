@@ -5,7 +5,6 @@ export type AccountTypes =
   | 'investment'
   | 'other';
 
-  
 export type Account = {
   id: string;
   availableBalance: number;
