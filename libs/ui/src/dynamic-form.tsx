@@ -117,9 +117,8 @@ export const DynamicForm = ({
                 )}
               >
                 {fields.map((field) => (
-                  <div className="w-full">
+                  <div className="w-full" key={field.name}>
                     <FormField
-                      key={field.name}
                       control={form.control}
                       name={field.name}
                       render={({ field: controllerField }) =>
