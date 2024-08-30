@@ -11,14 +11,13 @@ type BankCardProps = {
 };
 
 const BankCard = ({ account, userName, showBalance = true }: BankCardProps) => {
-  console.log({ account });
   return (
     <div className="flex flex-col">
       <Link
         href={`/transaction-history/?id=${account.appwriteItemId}`}
-        className="relative flex h-[190px] w-full max-w-[320px] justify-between rounded-[20px] border border-white bg-gradient-to-tr from-pink-400 to-pink-600 shadow-creditCard backdrop-blur-[6px]"
+        className="relative flex h-[190px] w-full max-w-[320px] justify-between rounded-[20px] border border-white bg-gradient-to-tr from-purple-400 to-purple-800 shadow-creditCard backdrop-blur-[6px]"
       >
-        <div className="relative z-10 flex size-full max-w-[228px] flex-col justify-between rounded-l-[20px] bg-gradient-to-tr from-pink-950 to-pink-500 px-5 pb-4 pt-5">
+        <div className="relative z-10 flex size-full max-w-[228px] flex-col justify-between rounded-l-[20px] bg-pink px-5 pb-4 pt-5">
           <div>
             <h1 className="text-16 font-semibold text-white">{account.name}</h1>
             <p className="font-ibm-plex-serif font-black text-white">
@@ -37,7 +36,7 @@ const BankCard = ({ account, userName, showBalance = true }: BankCardProps) => {
           </article>
         </div>
 
-        <div className="flex size-full flex-1 flex-col items-end justify-between rounded-r-[20px] bg-gradient-to-tr from-pink-400 to-pink-600 bg-cover bg-center bg-no-repeat py-5 pr-5">
+        <div className="flex size-full flex-1 flex-col items-end justify-between rounded-r-[20px] bg-cover bg-center bg-no-repeat py-5 pr-5">
           <Image src="/icons/Paypass.svg" width={20} height={24} alt="pay" />
           <Image
             src="/icons/mastercard.svg"
