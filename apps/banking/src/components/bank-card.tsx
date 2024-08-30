@@ -50,9 +50,10 @@ const BankCard = ({ account, userName, showBalance = true }: BankCardProps) => {
         <Image
           src="/icons/lines.svg"
           width={316}
-          height={190}
+          height={183}
           alt="lines"
           className="absolute top-0 left-0"
+          priority
         />
       </Link>
 

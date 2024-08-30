@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+'use server';
 import { Query } from 'node-appwrite';
 import { CountryCode } from 'plaid';
 import { parseStringify } from '@monor/utils/js';
@@ -49,6 +50,7 @@ export const getBankByAccountId = async ({
 }: {
   accountId: string;
 }) => {
+  console.log(`getBankByAccountId ==> ${accountId}`);
   try {
     const { database } = await createAdminClient();
     const bank = await database.listDocuments(
@@ -57,7 +59,7 @@ export const getBankByAccountId = async ({
       [Query.equal('accountId', [accountId])]
     );
 
-    if (bank.total !== 1) return null;
+    // if (bank.total !== 1) return null;
 
     return parseStringify(bank.documents[0]);
   } catch (error) {
@@ -92,7 +94,7 @@ export const getAccounts = async ({ userId }: { userId: string }) => {
           type: accountData.type!,
           subtype: accountData.subtype!,
           appwriteItemId: bank.$id,
-          sharaebleId: bank.shareableId,
+          shareableId: bank.shareableId,
         };
 
         return account;

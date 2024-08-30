@@ -4,6 +4,9 @@ export const extractCustomerIdFromUrl = (url: string) => url.split('/').pop();
 export const encryptId = (id: string): string =>
   Buffer.from(id, 'utf-8').toString('base64');
 
+export const decryptId = (encodedId: string): string =>
+  Buffer.from(encodedId, 'base64').toString('utf-8');
+
 type FormUrlQueryProps = { params: string; key: string; value: string };
 export const formUrlQuery = ({ params, key, value }: FormUrlQueryProps) => {
   const currentUrl = qs.parse(params);

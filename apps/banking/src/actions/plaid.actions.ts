@@ -127,7 +127,7 @@ export const exchangePublicToken = async ({
     if (!fundingSourceUrl) throw Error;
 
     const encryptedId = encryptId(accountData.account_id);
-    console.log({ encryptedId });
+
     // Create a bank account using the user ID, item ID, account ID, access token, funding source URL, and shareableId ID
     await createBankAccount({
       userId: user.$id,
