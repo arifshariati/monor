@@ -41,8 +41,8 @@ const TransactionHistoryPage = async ({
     <div className="flex flex-col gap-4">
       <div className="flex w-full items-center">
         <PageHeader
-          title="Bank accounts"
-          subtext="Effortlessly manage your bank accounts."
+          title="Transactions History"
+          subtext="Your bank accounts and transactions history."
         />
       </div>
       <div className="space-y-4">
